@@ -1,8 +1,5 @@
 # WordPress Vite.js starter theme
 
-![](screenshot.png)
-
-## Under the hood
 
 - [ES6](https://github.com/lukehoban/es6features#readme) for JavaScript
 - [SASS](http://sass-lang.com/) preprocessor for CSS following [SASS Guidelines](https://sass-guidelin.es/#the-7-1-pattern)
@@ -38,3 +35,5 @@ For production sites, create your build with :
 - Vite needs to know the root path of your project so <u>you cannot use a subdirectory</u> as the root of your WordPress installation.
 - If you haven't started the dev server, your assets will not be compiled just `npm run dev` and refresh page.
 - In your scss files use the alias `@` to target the `static/` directory. ie : `background-image: url('@/img/logo.png');`
+
+Based on https://github.com/oguilleux/vite-wordpress-starter-theme 
