@@ -30,6 +30,45 @@ For production sites, create your build with :
 - All the static assets used in scss or js files (images, fonts, etc.) are copied as-is to the `dist` directory. The other images used directly in php files are <u>not copied</u>.
 - To detect dev mode in php there is no `dist` directory, it is added on build.
 
+##Github Action
+### 1.Zugangsdaten vom Hosting
+	•	Server-Adresse (Host/IP)
+	•	SSH- oder SFTP-Benutzername
+	•	Root-Pfad zum Webroot (z. B. /var/www/html, /home/username/public_html)
+
+⚠️ Falls nur SFTP verfügbar ist: GitHub Actions kann das nicht direkt. Dann muss entweder SSH aktivieren lassen oder manuell hochladen.
+
+### 2. Deploy-Key erstellen
+
+Auf deinem Rechner einen speziellen Key für GitHub Actions anlegen:
+  `cd ~/.ssh
+  ssh-keygen -t ed25519 -C "github-actions" -f github-actions`
+	•	github-actions  → privater Key
+	•	github-actions.pub → öffentlicher Key
+
+
+ ### 3. Key auf den Server laden
+	1.	Auf dem Server als Kunde/SSH-User einloggen
+	2.	Den Inhalt von github-actions.pub in ~/.ssh/authorized_keys einfügen:
+
+`cat github-actions.pub >> ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys`
+
+### 4. GitHub Secrets einrichten
+Im Repo → Settings → Secrets and variables → Actions → New repository secret
+Diese Variablen anlegen:
+
+| Name                | Beispielwert                  | Beschreibung                          |
+|---------------------|-------------------------------|--------------------------------------|
+| `SSH_HOST`          | `123.45.67.89` oder `domain.tld` | Server-Adresse                        |
+| `SSH_USER`          | `deploy` oder `webuser`       | SSH-Benutzer                          |
+| `SSH_KEY`           | Inhalt der Datei `github-actions` (privater Key) | Privater Deploy-Key |
+| `REMOTE_PATH_STAGING` | `/var/www/staging.domain.tld` | Pfad zum Staging-Webroot              |
+| `REMOTE_PATH_PROD`  | `/var/www/domain.tld`         | Pfad zum Live-Webroot                 |
+
+
+
 ## Troubleshooting [dev mode]
 
 - Vite needs to know the root path of your project so <u>you cannot use a subdirectory</u> as the root of your WordPress installation.
@@ -37,3 +76,4 @@ For production sites, create your build with :
 - In your scss files use the alias `@` to target the `static/` directory. ie : `background-image: url('@/img/logo.png');`
 
 Based on https://github.com/oguilleux/vite-wordpress-starter-theme 
+
