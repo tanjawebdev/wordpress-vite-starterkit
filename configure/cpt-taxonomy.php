@@ -1,3 +1,6 @@
 <?php
 
-// Custom Post types & Taxonomies here
+// Custom Post types 
+include( __DIR__ . '/cpt-test-items.php' );
+
+// Taxonomies

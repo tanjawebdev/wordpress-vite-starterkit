@@ -30,6 +30,17 @@ For production sites, create your build with :
 - All the static assets used in scss or js files (images, fonts, etc.) are copied as-is to the `dist` directory. The other images used directly in php files are <u>not copied</u>.
 - To detect dev mode in php there is no `dist` directory, it is added on build.
 
+
+## Required Plugins
+This theme expects the following plugins to be installed:
+
+- Advanced Custom Fields (`wpackagist-plugin/advanced-custom-fields:^6.5`)
+
+Install via Composer:
+	`composer install`
+or manually via WordPress plugin search
+
+
 ##Github Action
 ### 1.Zugangsdaten vom Hosting
 	•	Server-Adresse (Host/IP)
@@ -74,6 +85,7 @@ Diese Variablen anlegen:
 - Vite needs to know the root path of your project so <u>you cannot use a subdirectory</u> as the root of your WordPress installation.
 - If you haven't started the dev server, your assets will not be compiled just `npm run dev` and refresh page.
 - In your scss files use the alias `@` to target the `static/` directory. ie : `background-image: url('@/img/logo.png');`
+
 
 Based on https://github.com/oguilleux/vite-wordpress-starter-theme 
 

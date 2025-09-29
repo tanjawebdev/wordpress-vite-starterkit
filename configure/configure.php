@@ -60,7 +60,7 @@ add_filter( 'big_image_size_threshold', '__return_false' );
 
 // Giving credits
 function remove_footer_admin () {
-    echo 'Thème crée par <a href="http://www.olivier-guilleux.com" target="_blank">Olivier Guilleux</a>';
+    echo 'Theme Autorin: <a href="https://www.tanja-kobler.com" target="_blank">Tanja Kobler</a>';
 }
 add_filter('admin_footer_text', 'remove_footer_admin');
 
@@ -103,3 +103,6 @@ add_action('upload_mimes', 'add_file_types_to_uploads', 1, 1);
 //disable update emails
 add_filter( 'auto_plugin_update_send_email', '__return_false' );
 add_filter( 'auto_theme_update_send_email', '__return_false' );
+
+// disable Gutenberg for all post types
+add_filter( 'use_block_editor_for_post_type', '__return_false' );
